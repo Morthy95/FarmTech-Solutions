@@ -40,20 +40,39 @@ def inserir():
 def listar():
     print("\n=== Listar ===")
     dados = op.listar()
-    print(f"Tomate: {dados['tomate']}")
-    print(f"Soja: {dados['soja']}")
 
+    print("Tomate:")
+    for i, area in enumerate(dados['tomate']):
+        print(f"  [{i}] {area:.2f} m²")
+
+    print("Soja:")
+    for i, area in enumerate(dados['soja']):
+        print(f"  [{i}] {area:.2f} m²")
+        
 def atualizar():
     print("\n=== Atualizar ===")
     cultura = input("tomate/soja: ").strip().lower()
+    if cultura not in ["tomate", "soja"]:
+        print("⚠️ Cultura inválida.")
+        return
     idx = int(input("Índice: "))
     novo = float(input("Novo valor de área (m²): "))
-    op.atualizar(cultura, idx, novo)
-    print("Atualizado.")
+    try:
+        op.atualizar(cultura, idx, novo)
+        print("✅ Atualizado com sucesso.")
+    except IndexError:
+        print("⚠️ Índice inválido.")
+
 
 def deletar():
     print("\n=== Deletar ===")
     cultura = input("tomate/soja: ").strip().lower()
+    if cultura not in ["tomate", "soja"]:
+        print("⚠️ Cultura inválida.")
+        return
     idx = int(input("Índice: "))
-    op.deletar(cultura, idx)
-    print("Deletado.")
+    try:
+        op.deletar(cultura, idx)
+        print("✅ Deletado com sucesso.")
+    except IndexError:
+        print("⚠️ Índice inválido.")
