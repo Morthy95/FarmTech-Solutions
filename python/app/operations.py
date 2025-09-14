@@ -25,6 +25,7 @@ def deletar(cultura: str, idx: int):
     delete(cultura, idx)
     
 def exportar_csv(nome_base: str = "plantio") -> None:
+
     """Exporta os dados das culturas para um arquivo CSV com timestamp no nome."""
     timestamp = datetime.datetime.now().strftime("%d%m%Y-%H%M")
     filepath = f"data/{nome_base}-{timestamp}.csv"
@@ -41,3 +42,27 @@ def exportar_csv(nome_base: str = "plantio") -> None:
                 writer.writerow([cultura, area])
 
     print(f"✅ Dados exportados com sucesso para {filepath}")
+
+def calcular_insumos(cultura: str, produto: str, dose_por_m2: float) -> float:
+    """
+    Calcula a quantidade total de insumo necessária para uma cultura.
+    - cultura: 'tomate' ou 'soja'
+    - produto: nome do insumo (ex: 'fertilizante X')
+    - dose_por_m2: litros ou mL por metro quadrado
+    """
+   
+    areas = dados.get(cultura, [])
+    if not areas:
+        print(f"⚠️ Nenhuma área cadastrada para {cultura}.")
+        return 0.0
+
+    total_area = sum(areas)
+    total_insumo = total_area * dose_por_m2
+
+    print(f"➡️ Cultura: {cultura}")
+    print(f"➡️ Produto: {produto}")
+    print(f"➡️ Área total: {total_area:.2f} m²")
+    print(f"➡️ Dose aplicada: {dose_por_m2} L/m²")
+    print(f"✅ Quantidade necessária: {total_insumo:.2f} L de {produto}")
+
+    return total_insumo

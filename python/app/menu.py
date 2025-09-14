@@ -8,6 +8,7 @@ def run_menu():
         print("3) Atualizar por índice")
         print("4) Deletar por índice")
         print("5) Gerar relatório CSV")
+        print("6) Calcular insumos")
         print("0) Sair")
         opcao = input("Escolha uma opção: ").strip()
 
@@ -17,6 +18,7 @@ def run_menu():
             case "3": atualizar()
             case "4": deletar()
             case "5": op.exportar_csv()  # Nova opção para exportar CSV
+            case "6": insumos()
             case "0":
                 print("Saindo... até logo!")
                 break
@@ -63,7 +65,6 @@ def atualizar():
     except IndexError:
         print("⚠️ Índice inválido.")
 
-
 def deletar():
     print("\n=== Deletar ===")
     cultura = input("tomate/soja: ").strip().lower()
@@ -76,3 +77,10 @@ def deletar():
         print("✅ Deletado com sucesso.")
     except IndexError:
         print("⚠️ Índice inválido.")
+
+def insumos():
+    print("\n=== Cálculo de Insumos ===")
+    cultura = input("Cultura (tomate/soja): ").strip().lower()
+    produto = input("Produto: ").strip()
+    dose = float(input("Dose (L/m²): ").replace(",", "."))
+    op.calcular_insumos(cultura, produto, dose)
