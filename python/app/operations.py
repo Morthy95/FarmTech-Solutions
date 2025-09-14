@@ -1,3 +1,4 @@
+import datetime
 import math
 from .storage import add_area, list_all, update, delete
 import csv
@@ -23,8 +24,10 @@ def atualizar(cultura: str, idx: int, novo_valor: float):
 def deletar(cultura: str, idx: int):
     delete(cultura, idx)
     
-def exportar_csv(filepath: str = "data/plantio.csv") -> None:
-    """Exporta os dados das culturas para um arquivo CSV."""
+def exportar_csv(nome_base: str = "plantio") -> None:
+    """Exporta os dados das culturas para um arquivo CSV com timestamp no nome."""
+    timestamp = datetime.datetime.now().strftime("%d%m%Y-%H%M")
+    filepath = f"data/{nome_base}-{timestamp}.csv"
     
     # Garante que a pasta existe
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
