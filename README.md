@@ -90,9 +90,7 @@ Digite a cidade: Sao Paulo
 💨 Vento: 3.4 m/s
 ☁️ Condição: nublado
 ```
-👨‍💻 Equipe
 Gabriel Peter Ferreira
-
 Grupo: FarmTech Solutions
 
 FIAP – Inteligência Artificial / Agricultura Digital
@@ -100,7 +98,4 @@ FIAP – Inteligência Artificial / Agricultura Digital
 📹 Demonstração em Vídeo
 Link do vídeo (não listado no YouTube):
 👉 link_aqui
-
-📑 Resumo (Formação Social)
-Resumo do artigo Agricultura de Precisão e Digital entregue em arquivo PDF/TXT junto ao projeto.
 
