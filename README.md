@@ -1,49 +1,43 @@
-# FarmTech Solutions — FIAP  
+# 🌱 FarmTech Solutions
 
-Aplicação em **Python** e **R** para apoiar a Agricultura Digital com duas culturas: **Tomate** e **Soja**.  
-
----
-
-## Objetivos  
-- Calcular área de plantio por cultura.  
-- Calcular manejo de insumos (dose por metro, ruas de plantio, litros totais).  
-- Manipular dados em vetores e operar via menu no Python.  
-- Exportar dados em CSV para análise em R.  
-- Em R: calcular média, desvio padrão, mínimo e máximo.  
-- (Extra) Usar API meteorológica pública para mostrar o clima.  
+Projeto acadêmico FIAP – Aplicação em **Python** e **R** para Agricultura Digital (Tomate e Soja).
 
 ---
 
-## Culturas e Geometria  
-- Tomate → talhão retangular (área = comprimento × largura)  
-- Soja → talhão circular (área = π × raio²)  
+## 📌 Funcionalidades
+
+### Python
+- Inserir dados de plantio (área em m² para Tomate ou Soja)
+- Listar dados cadastrados
+- Atualizar dados por índice
+- Deletar dados por índice
+- Exportar relatório CSV com timestamp automático (`data/plantio-AAAAMMDD-HHMM.csv`)
+- Calcular insumos (ex.: fertilizantes, herbicidas, etc.) com base em dose por m²
+- **Consultar clima** 🌤️ (API OpenWeather integrada via script R)
+
+### R
+- Estatísticas básicas por cultura a partir do CSV exportado pelo Python:
+  - Média
+  - Desvio padrão
+  - Mínimo
+  - Máximo
+- Geração de relatórios estatísticos (`r/relatorio-AAAAMMDD-HHMM.csv`)
+- Consulta de clima em tempo real via API OpenWeather (`r/clima.R`)
 
 ---
 
-## Tecnologias  
-- Python 3.10+  
-- R 4.3+ (pacotes httr, jsonlite)  
-- Git/GitHub  
+## ⚙️ Pré-requisitos
+
+- **Python 3.10+**
+  - Bibliotecas nativas
+- **R 4.2+**
+  - Pacotes: `httr`, `jsonlite`
 
 ---
 
-## Estrutura do Projeto  
-- `/python` → código Python (main.py)  
-- `/r` → código R (analise.R)  
-- `/docs` → resumo.pdf e video.txt  
-- `README.md`  
+## ▶️ Como rodar
 
----
-
-## Workflow de Branches  
-- **main** → versão estável, pronta para entrega.  
-- **dev** → integração antes de mandar pra main.  
-- **feature/...** → branches de funcionalidades (ex.: `feature/python-menu`).  
-
-### Convenção de commits  
-- `feat:` → nova funcionalidade  
-- `fix:` → correção  
-- `docs:` → documentação  
-- `chore:` → configuração/manutenção  
-
-Exemplo:  
+### Python
+```bash
+# Executar menu principal
+python python/main.py
