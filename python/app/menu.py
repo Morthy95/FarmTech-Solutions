@@ -1,3 +1,4 @@
+import subprocess
 from . import operations as op
 
 def run_menu():
@@ -9,6 +10,7 @@ def run_menu():
         print("4) Deletar por índice")
         print("5) Gerar relatório CSV")
         print("6) Calcular insumos")
+        print("7) Consultar clima (com R)")
         print("0) Sair")
         opcao = input("Escolha uma opção: ").strip()
 
@@ -19,6 +21,7 @@ def run_menu():
             case "4": deletar()
             case "5": op.exportar_csv()  # Nova opção para exportar CSV
             case "6": insumos()
+            case "7": clima()
             case "0":
                 print("Saindo... até logo!")
                 break
@@ -84,3 +87,23 @@ def insumos():
     produto = input("Produto: ").strip()
     dose = float(input("Dose (L/m²): ").replace(",", "."))
     op.calcular_insumos(cultura, produto, dose)
+
+
+def clima():
+    print("\n=== Consulta Climática ===")
+    cidade = input("Digite a cidade (ex.: Sao Paulo, Curitiba, Porto Alegre): ").strip()
+
+    try:
+        # roda o script R passando a cidade como argumento
+        resultado = subprocess.run(
+            ["Rscript", "r/clima.R", cidade],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",   # <<< força UTF-8
+            errors="ignore"     # <<< ignora caracteres inválidos se houver
+        )
+        print(resultado.stdout)  # mostra a saída do R
+
+    except subprocess.CalledProcessError as e:
+        print("⚠️ Erro ao executar script R")
+        print(e.stderr)
