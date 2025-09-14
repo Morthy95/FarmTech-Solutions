@@ -7,6 +7,7 @@ def run_menu():
         print("2) Listar dados")
         print("3) Atualizar por índice")
         print("4) Deletar por índice")
+        print("5) Gerar relatório CSV")
         print("0) Sair")
         opcao = input("Escolha uma opção: ").strip()
 
@@ -15,6 +16,7 @@ def run_menu():
             case "2": listar()
             case "3": atualizar()
             case "4": deletar()
+            case "5": op.exportar_csv()  # Nova opção para exportar CSV
             case "0":
                 print("Saindo... até logo!")
                 break
