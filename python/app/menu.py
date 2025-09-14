@@ -7,6 +7,7 @@ def run_menu():
         print("2) Listar dados")
         print("3) Atualizar por índice")
         print("4) Deletar por índice")
+        print("5) Gerar relatório CSV")
         print("0) Sair")
         opcao = input("Escolha uma opção: ").strip()
 
@@ -15,6 +16,7 @@ def run_menu():
             case "2": listar()
             case "3": atualizar()
             case "4": deletar()
+            case "5": op.exportar_csv()  # Nova opção para exportar CSV
             case "0":
                 print("Saindo... até logo!")
                 break
@@ -38,20 +40,39 @@ def inserir():
 def listar():
     print("\n=== Listar ===")
     dados = op.listar()
-    print(f"Tomate: {dados['tomate']}")
-    print(f"Soja: {dados['soja']}")
 
+    print("Tomate:")
+    for i, area in enumerate(dados['tomate']):
+        print(f"  [{i}] {area:.2f} m²")
+
+    print("Soja:")
+    for i, area in enumerate(dados['soja']):
+        print(f"  [{i}] {area:.2f} m²")
+        
 def atualizar():
     print("\n=== Atualizar ===")
     cultura = input("tomate/soja: ").strip().lower()
+    if cultura not in ["tomate", "soja"]:
+        print("⚠️ Cultura inválida.")
+        return
     idx = int(input("Índice: "))
     novo = float(input("Novo valor de área (m²): "))
-    op.atualizar(cultura, idx, novo)
-    print("Atualizado.")
+    try:
+        op.atualizar(cultura, idx, novo)
+        print("✅ Atualizado com sucesso.")
+    except IndexError:
+        print("⚠️ Índice inválido.")
+
 
 def deletar():
     print("\n=== Deletar ===")
     cultura = input("tomate/soja: ").strip().lower()
+    if cultura not in ["tomate", "soja"]:
+        print("⚠️ Cultura inválida.")
+        return
     idx = int(input("Índice: "))
-    op.deletar(cultura, idx)
-    print("Deletado.")
+    try:
+        op.deletar(cultura, idx)
+        print("✅ Deletado com sucesso.")
+    except IndexError:
+        print("⚠️ Índice inválido.")
