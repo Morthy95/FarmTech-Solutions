@@ -96,6 +96,5 @@ Grupo: FarmTech Solutions
 FIAP – Inteligência Artificial / Agricultura Digital
 
 📹 Demonstração em Vídeo
-Link do vídeo (não listado no YouTube):
-👉 link_aqui
+Link do vídeo (https://youtu.be/gSOxLw-MAPY):
 
